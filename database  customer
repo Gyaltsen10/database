@@ -1,0 +1,38 @@
+create database store_database;
+use store_database;
+create table customer(
+id int auto_increment not null,
+name varchar(45),
+email varchar(45),
+address varchar(45) not null,
+primary key(id)
+);
+create table product(
+id int auto_increment not null,
+name varchar(45),
+price decimal(5,2),
+primary key(id)
+);
+insert into customer(`name`,`email`,`address`)
+values("Mansan","silwal66@gmail.com","harisiddi"),
+("kusal","pathak@gmail","bhaktapur"),
+("Anil","al66@gmail.com","solukhumbu");
+
+insert into product(`name`,`price`)
+values("phone","100.11"),
+("computer","500.00"),
+("laptop","300.00");
+create table orders(
+id int not null auto_increment,
+customer_id int not null,
+product_id int not null,
+foreign key(customer_id) references customer(id),
+foreign key(product_id) references product(id),
+primary key(id)
+);
+insert into orders(`customer_id`,`product_id`)
+values("1","1"),
+("2","1");
+
+select customer.name, orders. * from customer inner join orders on customer.id= orders.customer_id;
+
